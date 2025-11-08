@@ -1,0 +1,49 @@
+# --- Python / build ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Environments ---
+.venv/
+.env
+.env.*
+!.env.example
+
+# --- Editors / OS junk ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- App caches ---
+.streamlit/
+.streamlit/data/
+.streamlit/cache/
+
+# --- Data & DB artifacts ---
+# Keep synthetic CSVs and meeting notes tracked:
+#   data/raw/*.csv
+#   data/meeting_notes/*.txt
+# Ignore heavy or local-only outputs:
+data/vectorstore/
+local.db
+*.sqlite
+*.db
+logs/
+*.log
+
+# --- Notebooks ---
+.ipynb_checkpoints/

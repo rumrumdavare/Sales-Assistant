@@ -1,0 +1,25 @@
+contact_id,client_id,full_name,title,email,phone,linkedin,is_primary
+1,1,Andrew Stewart,VP Operations,carl95@example.org,+1-876-772-4238x8496,https://www.linkedin.com/in/wendytaylor,True
+2,1,Peter Callahan Jr.,IT Manager,laurahenderson@example.org,(669)878-4801x8451,https://www.linkedin.com/in/shawnmckay,False
+3,1,Deborah Mason,Head of Procurement,williamrodriguez@example.net,289-332-5288x0957,https://www.linkedin.com/in/natasha43,False
+4,2,Shawn Arroyo,Head of Procurement,dennislisa@example.net,001-822-778-2489x63834,https://www.linkedin.com/in/clam,True
+5,2,Danny Morgan,IT Manager,briannasmith@example.net,+1-403-910-5183x4738,https://www.linkedin.com/in/kristenaguirre,False
+6,3,Brent Jordan,IT Manager,ujenkins@example.org,+1-610-965-1333x87262,https://www.linkedin.com/in/nancyjones,True
+7,3,Savannah Garcia,COO,novaksara@example.org,(267)873-6026,https://www.linkedin.com/in/sara74,False
+8,4,Tyler Cowan,CTO,smoore@example.org,4982050097,https://www.linkedin.com/in/yorkcasey,True
+9,4,Scott Powell,Head of Procurement,bethwilliams@example.org,(799)385-4353x46247,https://www.linkedin.com/in/ellisyolanda,False
+10,4,Angel Lewis MD,Head of Procurement,nicole35@example.com,(378)449-8084,https://www.linkedin.com/in/darrell18,False
+11,5,Douglas Clark,CTO,james48@example.com,801-264-0052x427,https://www.linkedin.com/in/jonesnicole,True
+12,5,Kimberly Davenport,COO,russellwilliams@example.com,4535315869,https://www.linkedin.com/in/theresacochran,False
+13,5,Allison Doyle,Head of Procurement,kimberly63@example.com,(616)507-3375,https://www.linkedin.com/in/andrewlee,False
+14,6,Sean Rasmussen,Head of Procurement,michael86@example.net,+1-350-814-2940,https://www.linkedin.com/in/jessica56,True
+15,7,Kayla Cruz,COO,jonathanfletcher@example.org,783.856.1595x14846,https://www.linkedin.com/in/angela36,True
+16,7,Jamie Adkins,VP Operations,christinaturner@example.net,9449369957,https://www.linkedin.com/in/williamleon,False
+17,8,Nancy Hopkins,COO,zachary95@example.org,001-534-833-2003x79176,https://www.linkedin.com/in/jross,True
+18,8,Abigail Potter,CTO,osbornejeffery@example.net,870.983.1727x88957,https://www.linkedin.com/in/juliawells,False
+19,8,David Walsh,COO,rsims@example.com,443-545-5812,https://www.linkedin.com/in/tbenson,False
+20,9,Jason Rivera,CTO,nperry@example.com,(590)996-7054x6688,https://www.linkedin.com/in/joshuatucker,True
+21,9,Michael Yates,COO,marycalhoun@example.net,+1-906-499-0162,https://www.linkedin.com/in/greenmark,False
+22,10,George Hobbs,Head of Procurement,karen64@example.org,408.505.3100x3309,https://www.linkedin.com/in/thomaswilson,True
+23,10,Julie Scott,IT Manager,gary91@example.org,619-304-9663x1931,https://www.linkedin.com/in/reedross,False
+24,10,Jonathan Peterson,CTO,gshort@example.com,(672)762-8498x776,https://www.linkedin.com/in/mariahmiller,False

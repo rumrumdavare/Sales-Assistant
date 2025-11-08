@@ -1,0 +1,121 @@
+interaction_id,client_id,timestamp,channel,owner_name,notes,sentiment
+1,1,2025-06-17T22:28:00,Call,Brian Yang,Considering downsizing license seats next quarter.,negative
+2,1,2025-10-02T11:10:00,Call,Brian Yang,Escalated bug impacted batch processing last week.,negative
+3,1,2025-08-30T05:01:00,Email,Brian Yang,Considering downsizing license seats next quarter.,negative
+4,1,2025-06-16T18:58:00,Meeting,Brian Yang,Considering downsizing license seats next quarter.,positive
+5,1,2025-09-18T14:33:00,Meeting,Brian Yang,Happy with performance improvements since last sprint.,negative
+6,1,2025-06-13T23:22:00,Email,Brian Yang,Renewal call scheduled; want case studies for healthcare sector.,neutral
+7,1,2025-05-12T02:43:00,Call,Brian Yang,Considering downsizing license seats next quarter.,negative
+8,1,2025-08-28T16:02:00,Call,Brian Yang,Discussed delivery delays; client asked for clearer ETA.,positive
+9,1,2025-06-11T15:29:00,Email,Brian Yang,Discussed delivery delays; client asked for clearer ETA.,negative
+10,1,2025-05-22T21:52:00,Email,Brian Yang,Discussed delivery delays; client asked for clearer ETA.,neutral
+11,1,2025-10-12T06:51:00,Call,Brian Yang,Considering downsizing license seats next quarter.,negative
+12,1,2025-06-14T18:20:00,Meeting,Brian Yang,Considering downsizing license seats next quarter.,negative
+13,2,2025-07-01T09:54:00,Email,Daniel Wagner,Positive feedback on onboarding; interested in analytics add-on.,positive
+14,2,2025-07-12T11:39:00,Call,Daniel Wagner,Considering downsizing license seats next quarter.,positive
+15,2,2025-10-17T01:25:00,Meeting,Daniel Wagner,Positive feedback on onboarding; interested in analytics add-on.,negative
+16,2,2025-07-18T23:45:00,Email,Daniel Wagner,Escalated bug impacted batch processing last week.,negative
+17,2,2025-09-12T05:38:00,Email,Daniel Wagner,Happy with performance improvements since last sprint.,negative
+18,2,2025-08-20T08:51:00,Email,Daniel Wagner,Considering downsizing license seats next quarter.,positive
+19,2,2025-10-05T21:25:00,Meeting,Daniel Wagner,Discussed delivery delays; client asked for clearer ETA.,negative
+20,2,2025-08-31T17:40:00,Call,Daniel Wagner,Considering downsizing license seats next quarter.,negative
+21,2,2025-07-20T21:56:00,Call,Daniel Wagner,Discussed delivery delays; client asked for clearer ETA.,neutral
+22,2,2025-08-24T08:48:00,Call,Daniel Wagner,Considering downsizing license seats next quarter.,negative
+23,2,2025-09-12T13:53:00,Email,Daniel Wagner,Discussed delivery delays; client asked for clearer ETA.,positive
+24,2,2025-08-11T22:03:00,Meeting,Daniel Wagner,Considering downsizing license seats next quarter.,positive
+25,2,2025-06-17T18:03:00,Meeting,Daniel Wagner,Positive feedback on onboarding; interested in analytics add-on.,negative
+26,2,2025-10-13T04:02:00,Meeting,Daniel Wagner,Escalated bug impacted batch processing last week.,neutral
+27,3,2025-06-07T15:29:00,Meeting,Kevin Pacheco,Discussed delivery delays; client asked for clearer ETA.,positive
+28,3,2025-10-10T09:24:00,Meeting,Kevin Pacheco,Asked for integration with SAP; timeline concerns remain.,neutral
+29,3,2025-09-08T01:21:00,Call,Kevin Pacheco,Escalated bug impacted batch processing last week.,neutral
+30,3,2025-07-21T18:24:00,Meeting,Kevin Pacheco,Renewal call scheduled; want case studies for healthcare sector.,neutral
+31,3,2025-08-11T21:06:00,Call,Kevin Pacheco,Positive feedback on onboarding; interested in analytics add-on.,negative
+32,3,2025-06-15T16:34:00,Call,Kevin Pacheco,Requested pricing for premium support.,neutral
+33,3,2025-10-13T15:43:00,Call,Kevin Pacheco,Requested pricing for premium support.,neutral
+34,3,2025-06-13T00:47:00,Meeting,Kevin Pacheco,Discussed delivery delays; client asked for clearer ETA.,positive
+35,4,2025-06-11T13:07:00,Meeting,Daniel Gallagher,Positive feedback on onboarding; interested in analytics add-on.,negative
+36,4,2025-08-24T19:10:00,Email,Daniel Gallagher,Requested pricing for premium support.,neutral
+37,4,2025-08-19T03:53:00,Meeting,Daniel Gallagher,Asked for integration with SAP; timeline concerns remain.,negative
+38,4,2025-05-08T02:12:00,Call,Daniel Gallagher,Considering downsizing license seats next quarter.,neutral
+39,4,2025-10-17T20:26:00,Call,Daniel Gallagher,Renewal call scheduled; want case studies for healthcare sector.,negative
+40,4,2025-10-30T12:17:00,Email,Daniel Gallagher,Renewal call scheduled; want case studies for healthcare sector.,negative
+41,4,2025-07-09T05:21:00,Call,Daniel Gallagher,Discussed delivery delays; client asked for clearer ETA.,negative
+42,4,2025-10-11T00:09:00,Email,Daniel Gallagher,Discussed delivery delays; client asked for clearer ETA.,neutral
+43,4,2025-06-03T05:57:00,Call,Daniel Gallagher,Requested pricing for premium support.,negative
+44,4,2025-08-13T11:09:00,Email,Daniel Gallagher,Asked for integration with SAP; timeline concerns remain.,negative
+45,4,2025-05-09T15:24:00,Email,Daniel Gallagher,Asked for integration with SAP; timeline concerns remain.,positive
+46,4,2025-07-18T03:19:00,Email,Daniel Gallagher,Escalated bug impacted batch processing last week.,negative
+47,4,2025-09-15T10:05:00,Email,Daniel Gallagher,Asked for integration with SAP; timeline concerns remain.,neutral
+48,4,2025-05-11T23:15:00,Email,Daniel Gallagher,Renewal call scheduled; want case studies for healthcare sector.,negative
+49,5,2025-05-04T19:42:00,Email,Lindsey Roman,Considering downsizing license seats next quarter.,negative
+50,5,2025-09-09T08:44:00,Call,Lindsey Roman,Escalated bug impacted batch processing last week.,negative
+51,5,2025-10-24T01:54:00,Call,Lindsey Roman,Asked for integration with SAP; timeline concerns remain.,neutral
+52,5,2025-10-13T14:44:00,Meeting,Lindsey Roman,Happy with performance improvements since last sprint.,positive
+53,5,2025-06-15T13:05:00,Email,Lindsey Roman,Renewal call scheduled; want case studies for healthcare sector.,negative
+54,5,2025-06-04T15:04:00,Email,Lindsey Roman,Happy with performance improvements since last sprint.,neutral
+55,5,2025-08-11T09:28:00,Meeting,Lindsey Roman,Positive feedback on onboarding; interested in analytics add-on.,neutral
+56,5,2025-06-05T16:50:00,Email,Lindsey Roman,Happy with performance improvements since last sprint.,negative
+57,5,2025-06-19T05:23:00,Meeting,Lindsey Roman,Escalated bug impacted batch processing last week.,neutral
+58,5,2025-07-12T20:24:00,Call,Lindsey Roman,Asked for integration with SAP; timeline concerns remain.,positive
+59,5,2025-09-28T23:09:00,Call,Lindsey Roman,Renewal call scheduled; want case studies for healthcare sector.,positive
+60,5,2025-07-18T12:41:00,Meeting,Lindsey Roman,Renewal call scheduled; want case studies for healthcare sector.,positive
+61,5,2025-09-28T16:40:00,Meeting,Lindsey Roman,Happy with performance improvements since last sprint.,positive
+62,5,2025-09-16T03:30:00,Call,Lindsey Roman,Happy with performance improvements since last sprint.,positive
+63,6,2025-10-30T13:48:00,Email,Mark Mcclure,Happy with performance improvements since last sprint.,positive
+64,6,2025-05-28T02:46:00,Call,Mark Mcclure,Considering downsizing license seats next quarter.,neutral
+65,6,2025-05-11T16:34:00,Call,Mark Mcclure,Requested pricing for premium support.,positive
+66,6,2025-10-09T13:34:00,Meeting,Mark Mcclure,Asked for integration with SAP; timeline concerns remain.,negative
+67,6,2025-08-31T01:47:00,Email,Mark Mcclure,Escalated bug impacted batch processing last week.,negative
+68,6,2025-10-24T21:51:00,Call,Mark Mcclure,Positive feedback on onboarding; interested in analytics add-on.,neutral
+69,6,2025-07-16T02:30:00,Email,Mark Mcclure,Happy with performance improvements since last sprint.,neutral
+70,6,2025-07-20T15:57:00,Meeting,Mark Mcclure,Discussed delivery delays; client asked for clearer ETA.,negative
+71,6,2025-07-14T15:55:00,Meeting,Mark Mcclure,Considering downsizing license seats next quarter.,negative
+72,6,2025-06-10T15:08:00,Email,Mark Mcclure,Considering downsizing license seats next quarter.,negative
+73,6,2025-07-04T01:33:00,Meeting,Mark Mcclure,Asked for integration with SAP; timeline concerns remain.,neutral
+74,6,2025-05-26T23:09:00,Meeting,Mark Mcclure,Happy with performance improvements since last sprint.,positive
+75,6,2025-07-08T17:19:00,Call,Mark Mcclure,Considering downsizing license seats next quarter.,neutral
+76,6,2025-08-28T02:49:00,Meeting,Mark Mcclure,Considering downsizing license seats next quarter.,positive
+77,7,2025-08-21T09:02:00,Meeting,Victoria Wyatt,Renewal call scheduled; want case studies for healthcare sector.,negative
+78,7,2025-08-22T12:46:00,Meeting,Victoria Wyatt,Positive feedback on onboarding; interested in analytics add-on.,negative
+79,7,2025-09-22T15:42:00,Meeting,Victoria Wyatt,Requested pricing for premium support.,positive
+80,7,2025-09-06T20:40:00,Call,Victoria Wyatt,Asked for integration with SAP; timeline concerns remain.,positive
+81,7,2025-07-03T10:03:00,Email,Victoria Wyatt,Happy with performance improvements since last sprint.,neutral
+82,7,2025-06-03T01:05:00,Meeting,Victoria Wyatt,Happy with performance improvements since last sprint.,neutral
+83,7,2025-10-29T11:47:00,Call,Victoria Wyatt,Happy with performance improvements since last sprint.,positive
+84,7,2025-06-13T03:09:00,Email,Victoria Wyatt,Considering downsizing license seats next quarter.,negative
+85,7,2025-08-22T09:35:00,Email,Victoria Wyatt,Happy with performance improvements since last sprint.,neutral
+86,8,2025-05-10T10:20:00,Email,Jacob Clark,Considering downsizing license seats next quarter.,negative
+87,8,2025-05-24T06:05:00,Call,Jacob Clark,Discussed delivery delays; client asked for clearer ETA.,negative
+88,8,2025-05-19T09:58:00,Call,Jacob Clark,Requested pricing for premium support.,negative
+89,8,2025-08-25T10:46:00,Email,Jacob Clark,Considering downsizing license seats next quarter.,neutral
+90,8,2025-08-05T10:49:00,Call,Jacob Clark,Renewal call scheduled; want case studies for healthcare sector.,negative
+91,8,2025-07-02T22:19:00,Meeting,Jacob Clark,Discussed delivery delays; client asked for clearer ETA.,neutral
+92,8,2025-09-03T03:02:00,Meeting,Jacob Clark,Discussed delivery delays; client asked for clearer ETA.,negative
+93,8,2025-08-28T16:13:00,Email,Jacob Clark,Requested pricing for premium support.,negative
+94,8,2025-09-28T07:24:00,Email,Jacob Clark,Escalated bug impacted batch processing last week.,neutral
+95,8,2025-05-04T14:17:00,Call,Jacob Clark,Requested pricing for premium support.,positive
+96,8,2025-05-27T23:21:00,Email,Jacob Clark,Requested pricing for premium support.,neutral
+97,8,2025-10-03T05:05:00,Call,Jacob Clark,Happy with performance improvements since last sprint.,neutral
+98,8,2025-09-10T20:29:00,Meeting,Jacob Clark,Escalated bug impacted batch processing last week.,negative
+99,9,2025-08-14T01:28:00,Email,Nicholas Martin,Discussed delivery delays; client asked for clearer ETA.,neutral
+100,9,2025-06-16T09:24:00,Call,Nicholas Martin,Positive feedback on onboarding; interested in analytics add-on.,positive
+101,9,2025-05-18T13:06:00,Call,Nicholas Martin,Considering downsizing license seats next quarter.,negative
+102,9,2025-07-12T11:26:00,Call,Nicholas Martin,Requested pricing for premium support.,neutral
+103,9,2025-09-14T23:33:00,Meeting,Nicholas Martin,Renewal call scheduled; want case studies for healthcare sector.,positive
+104,9,2025-06-15T07:37:00,Call,Nicholas Martin,Renewal call scheduled; want case studies for healthcare sector.,neutral
+105,9,2025-08-29T20:49:00,Call,Nicholas Martin,Escalated bug impacted batch processing last week.,neutral
+106,9,2025-06-07T03:24:00,Call,Nicholas Martin,Asked for integration with SAP; timeline concerns remain.,negative
+107,9,2025-06-26T12:55:00,Call,Nicholas Martin,Escalated bug impacted batch processing last week.,neutral
+108,9,2025-08-25T12:49:00,Meeting,Nicholas Martin,Renewal call scheduled; want case studies for healthcare sector.,positive
+109,9,2025-10-28T06:54:00,Email,Nicholas Martin,Escalated bug impacted batch processing last week.,positive
+110,9,2025-07-18T07:31:00,Email,Nicholas Martin,Considering downsizing license seats next quarter.,positive
+111,9,2025-06-27T08:16:00,Email,Nicholas Martin,Positive feedback on onboarding; interested in analytics add-on.,neutral
+112,10,2025-07-19T00:51:00,Call,Melinda Cameron,Asked for integration with SAP; timeline concerns remain.,neutral
+113,10,2025-06-11T06:44:00,Call,Melinda Cameron,Asked for integration with SAP; timeline concerns remain.,neutral
+114,10,2025-05-04T08:49:00,Call,Melinda Cameron,Renewal call scheduled; want case studies for healthcare sector.,negative
+115,10,2025-09-29T23:54:00,Call,Melinda Cameron,Positive feedback on onboarding; interested in analytics add-on.,positive
+116,10,2025-06-15T00:55:00,Email,Melinda Cameron,Escalated bug impacted batch processing last week.,positive
+117,10,2025-06-29T14:20:00,Meeting,Melinda Cameron,Renewal call scheduled; want case studies for healthcare sector.,negative
+118,10,2025-09-11T13:52:00,Call,Melinda Cameron,Requested pricing for premium support.,neutral
+119,10,2025-10-27T00:32:00,Email,Melinda Cameron,Renewal call scheduled; want case studies for healthcare sector.,negative
+120,10,2025-10-17T05:48:00,Meeting,Melinda Cameron,Requested pricing for premium support.,positive

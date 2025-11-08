@@ -1,0 +1,11 @@
+client_id,company_name,industry,region,annual_revenue,owner_name,lifecycle_stage,deal_stage,lifetime_value,created_at
+1,"Rodriguez, Figueroa and Sanchez PLC",SaaS,EMEA,1620149,Brian Yang,Evangelist,Proposal/Quote,90856.94,2025-02-23
+2,Garza Inc Inc,E-commerce,EMEA,1773762,Daniel Wagner,Evangelist,Prospecting,246179.92,2022-12-10
+3,"Gonzalez, Santos and Gardner PLC",Healthcare,EMEA,1044980,Kevin Pacheco,Evangelist,Negotiation,85778.0,2022-11-09
+4,Wolfe LLC Ltd,SaaS,EMEA,3101907,Daniel Gallagher,Lead,Qualified,156445.16,2023-04-06
+5,James LLC SpA,Healthcare,EMEA,907379,Lindsey Roman,Evangelist,Qualified,136698.91,2024-10-12
+6,"Martinez, Nielsen and Miller PLC",Healthcare,AMER,910682,Mark Mcclure,Lead,Negotiation,74649.73,2024-05-13
+7,"Lee, Jones and Stanley SpA",Manufacturing,EMEA,1390505,Victoria Wyatt,Lead,Closed Lost,31320.62,2023-04-04
+8,Ramirez-Reid SRL,Manufacturing,AMER,427218,Jacob Clark,Lead,Qualified,70447.81,2023-12-18
+9,"Zuniga, Wong and Lynch GmbH",SaaS,EMEA,654942,Nicholas Martin,Customer,Prospecting,119198.85,2024-06-10
+10,Mayo-Bowman GmbH,Manufacturing,APAC,697450,Melinda Cameron,Customer,Prospecting,42303.19,2023-01-24
