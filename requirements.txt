@@ -1,18 +1,26 @@
 # Core
-# langchain==0.2.16
+langchain==0.2.16
 # openai==1.50.2
 # tiktoken==0.7.0
-# chromadb==0.5.4
-# pydantic==2.8.2
-# python-dotenv==1.0.1
+chromadb==0.5.4
+pydantic==2.8.2
+python-dotenv==1.0.1
+langchain-core==0.2.39
+langchain-community==0.2.16
+langchain-openai==0.1.22
+langchain-text-splitters==0.2.2
 
 # Data
 pandas==2.2.2
 numpy==1.26.4
 faker==26.0.0
 
+#Vector Stores
+sentence-transformers==2.7.0
+torch==2.4.1
+
 # App
-# streamlit==1.38.0
+streamlit==1.38.0
 
 # Dev & QA (optional)
 # pytest==8.3.2
