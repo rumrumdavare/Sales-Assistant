@@ -22,6 +22,10 @@ torch==2.4.1
 # App
 streamlit==1.38.0
 
+#LLM
+groq==0.13.0
+langchain-groq==0.1.4
+
 # Dev & QA (optional)
 # pytest==8.3.2
 # pytest-cov==5.0.0
