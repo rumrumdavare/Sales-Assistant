@@ -3,7 +3,10 @@ import sqlite3
 from pathlib import Path
 from typing import Any, Dict, List
 
-DB_PATH = Path("local.db")
+# Resolve DB path relative to the repository root to avoid CWD issues
+# ai_sales_assistant/db/repositories.py -> parents[0]=db, [1]=ai_sales_assistant, [2]=repo root
+ROOT_DIR = Path(__file__).resolve().parents[2]
+DB_PATH = ROOT_DIR / "local.db"
 
 def _conn() -> sqlite3.Connection:
     conn = sqlite3.connect(DB_PATH)
@@ -16,7 +19,7 @@ def client_overview(client_name: str) -> Dict[str, Any] | None:
     SELECT client_id, company_name, industry, region, owner_name,
            lifecycle_stage, deal_stage, lifetime_value, created_at
     FROM clients
-    WHERE company_name LIKE ? COLLATE NOCASE
+    WHERE company_name LIKE '%' || ? || '%' COLLATE NOCASE
     LIMIT 1;
     """
     with _conn() as c:
@@ -26,7 +29,7 @@ def client_overview(client_name: str) -> Dict[str, Any] | None:
 def kpi_snapshot(client_name: str, months: int = 3) -> List[Dict[str, Any]]:
     q = """
     WITH tgt AS (
-      SELECT client_id FROM clients WHERE company_name LIKE ? COLLATE NOCASE LIMIT 1
+      SELECT client_id FROM clients WHERE company_name LIKE '%' || ? || '%' COLLATE NOCASE LIMIT 1
     )
     SELECT m.month, m.spend, m.satisfaction_score, m.churn_risk, m.open_tickets, m.renewal_due
     FROM metrics m
@@ -42,7 +45,7 @@ def kpi_snapshot(client_name: str, months: int = 3) -> List[Dict[str, Any]]:
 def recent_interactions(client_name: str, limit: int = 5) -> List[Dict[str, Any]]:
     q = """
     WITH tgt AS (
-      SELECT client_id FROM clients WHERE company_name LIKE ? COLLATE NOCASE LIMIT 1
+      SELECT client_id FROM clients WHERE company_name LIKE '%' || ? || '%' COLLATE NOCASE LIMIT 1
     )
     SELECT i.timestamp, i.channel, i.owner_name, i.sentiment, i.notes
     FROM interactions i
@@ -57,7 +60,7 @@ def recent_interactions(client_name: str, limit: int = 5) -> List[Dict[str, Any]
 def open_tickets(client_name: str, status: str | None = None) -> List[Dict[str, Any]]:
     q = """
     WITH tgt AS (
-      SELECT client_id FROM clients WHERE company_name LIKE ? COLLATE NOCASE LIMIT 1
+      SELECT client_id FROM clients WHERE company_name LIKE '%' || ? || '%' COLLATE NOCASE LIMIT 1
     )
     SELECT t.ticket_id, t.category, t.status, t.opened_at, t.resolved_at, t.resolution_time_days, t.priority
     FROM tickets t

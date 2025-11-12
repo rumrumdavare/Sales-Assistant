@@ -1,20 +1,66 @@
 from __future__ import annotations
 from typing import Optional, List, Dict, Any
+import json
 from langchain.tools import StructuredTool
 from ai_sales_assistant.db import repositories as repo
 
-def _ov(client_name: str) -> Dict[str, Any] | str:
-    r = repo.client_overview(client_name)
-    return r if r else "Not found"
+def _normalize_name(arg: Any) -> str:
+    """Accept plain name, or JSON string with client_name/company_name, or dict.
+    Returns best-effort extracted company name.
+    """
+    if isinstance(arg, str):
+        s = arg.strip()
+        if s.startswith("{") and s.endswith("}"):
+            try:
+                data = json.loads(s)
+                return (
+                    data.get("client_name")
+                    or data.get("company_name")
+                    or s
+                )
+            except Exception:
+                return arg
+        return arg
+    if isinstance(arg, dict):
+        return arg.get("client_name") or arg.get("company_name") or ""
+    return str(arg)
+
+
+def _ov(client_name: str):
+    name = _normalize_name(client_name)
+    r = repo.client_overview(name)
+    return r if r else {"not_found": True}
 
 def _kpi(client_name: str, months: int = 3) -> List[Dict[str, Any]]:
-    return repo.kpi_snapshot(client_name, months)
+    name = _normalize_name(client_name)
+    # Allow months to come via JSON string
+    if isinstance(client_name, str) and client_name.strip().startswith("{"):
+        try:
+            data = json.loads(client_name)
+            months = int(data.get("months", months))
+        except Exception:
+            pass
+    return repo.kpi_snapshot(name, months)
 
 def _interactions(client_name: str, limit: int = 5) -> List[Dict[str, Any]]:
-    return repo.recent_interactions(client_name, limit)
+    name = _normalize_name(client_name)
+    if isinstance(client_name, str) and client_name.strip().startswith("{"):
+        try:
+            data = json.loads(client_name)
+            limit = int(data.get("limit", limit))
+        except Exception:
+            pass
+    return repo.recent_interactions(name, limit)
 
 def _tickets(client_name: str, status: Optional[str] = None) -> List[Dict[str, Any]]:
-    return repo.open_tickets(client_name, status)
+    name = _normalize_name(client_name)
+    if isinstance(client_name, str) and client_name.strip().startswith("{"):
+        try:
+            data = json.loads(client_name)
+            status = data.get("status", status)
+        except Exception:
+            pass
+    return repo.open_tickets(name, status)
 
 client_overview_tool = StructuredTool.from_function(
     func=_ov,

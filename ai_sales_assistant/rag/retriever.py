@@ -4,14 +4,17 @@ from typing import List, Dict, Optional
 
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings  # LC 0.2 line
+from chromadb.config import Settings
 
 VECTOR_DIR = "data/vectorstore"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 def load_vectorstore() -> Chroma:
+    # Use embedding_function for langchain_community==0.2.x compatibility
     return Chroma(
         persist_directory=VECTOR_DIR,
         embedding_function=HuggingFaceEmbeddings(model_name=EMBED_MODEL),
+        client_settings=Settings(anonymized_telemetry=False),
     )
 
 def notes_search(query: str, k: int = 3, client_name: Optional[str] = None) -> List[Dict]:
@@ -19,6 +22,7 @@ def notes_search(query: str, k: int = 3, client_name: Optional[str] = None) -> L
     vs = load_vectorstore()
     docs = vs.similarity_search(query, k=k*2)  # fetch extra to filter
     out = []
+    seen_texts = set()
     for d in docs:
         src = d.metadata.get("source", "")
         if client_name:
@@ -28,6 +32,9 @@ def notes_search(query: str, k: int = 3, client_name: Optional[str] = None) -> L
         excerpt = d.page_content.strip()
         if len(excerpt) > 350:
             excerpt = excerpt[:347] + "..."
+        if excerpt in seen_texts:
+            continue
+        seen_texts.add(excerpt)
         out.append({"text": excerpt, "source": Path(src).name})
         if len(out) >= k:
             break
