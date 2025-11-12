@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_groq import ChatGroq
+from langchain_groq import ChatGroq # type: ignore
 
 # Tools
 from ai_sales_assistant.agent.tools.sql_tools import (
