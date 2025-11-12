@@ -1,13 +1,17 @@
 from __future__ import annotations
 from pathlib import Path
+import os
 from typing import List, Dict, Optional
 
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings  # LC 0.2 line
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 from chromadb.config import Settings
 
 VECTOR_DIR = "data/vectorstore"
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+
+# Extra safeguard to silence telemetry on some Chroma versions
+os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
 
 def load_vectorstore() -> Chroma:
     # Use embedding_function for langchain_community==0.2.x compatibility

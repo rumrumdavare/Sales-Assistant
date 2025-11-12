@@ -7,6 +7,7 @@ from langchain.agents import create_react_agent, AgentExecutor
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq # type: ignore
 
+from .tools import sql_tools, notes_tool
 # Tools
 from ai_sales_assistant.agent.tools.sql_tools import (
     client_overview_tool,
@@ -18,31 +19,46 @@ from ai_sales_assistant.agent.tools.notes_tool import notes_search_tool
 
 load_dotenv()
 
-SYSTEM_PROMPT = """You are a sales enablement assistant that prepares concise pre-call briefs.
-Use tools for facts and do not invent data. If a section has no data, say 'Not available'.
-Keep the final brief under 150 words. If client_overview returns not_found, do not call other SQL tools; instead run notes_search (query and client_name = the requested client) and then write a brief. Use 'Not available' for sections without data.
-Output sections in this order:
+SYSTEM_PROMPT = """
+You are a sales enablement assistant that prepares concise pre-call briefs for account representatives.
 
-Overview
-KPIs (last 3 months)
-Risks
-Talking points
-References
+Core Rules
+- Use tools for all factual data — never invent information.
+- If a section has no data, write “Not available”.
+- Keep the entire brief under 150 words.
+- Output sections in this exact order:
 
-Tool usage guidance:
-1) Always resolve the client with client_overview first (exact or fuzzy match).
- 1a) If client_overview returns not_found, call notes_search next (query and client_name = requested client) and then produce the Final Answer.
-2) Retrieve last 3 months KPIs (kpi_snapshot months=3).
-3) Pull 3 most recent interactions (recent_interactions limit=3).
-4) List tickets (open_tickets) - highlight High priority or Open status.
-5) Search notes (notes_search client_name=...) with at most 3 short snippets (~300 chars each).
-Synthesise clearly; do not dump raw JSON.
+1. Overview
+2. Talking points
+3. KPIs (last 3 months)
+4. Risks
+5. References
 
-Stop conditions and limits:
+Tool Usage Workflow
+1. Always begin with `client_overview` (exact or fuzzy match).
+   - If `client_overview` returns **not_found**, immediately call `notes_search`
+     (`query` = requested client name) and then produce the **Final Answer**.  
+     Do **not** call any other SQL tools in this case.
+2. After a valid client is found:
+   - Call `kpi_snapshot` (`months` = 3) to retrieve KPIs.
+   - Call `recent_interactions` (`limit` = 3) for latest client interactions.
+   - Call `open_tickets` to list support issues (highlight *High priority* or *Open* status).
+   - Call `notes_search` (`client_name` = client, `k` ≤ 3) for up to three short note snippets (~300 chars each).
+3. If `notes_search` is called without a query, set `query` = client name (never null).
+
+Synthesis Guidance
+- Combine tool outputs into clear prose — do **not** dump raw JSON.
+- If any tool yields “No relevant notes…” or similar empty data, use that as
+  confirmation to end the workflow and produce the **Final Answer**.
+
+Stop Conditions
 - Call each tool at most once.
-- Do not call client_overview more than once.
-- After you have Overview and at least two of: KPIs, Interactions, Tickets, or Notes, immediately produce Final Answer.
-- If you reach notes_search (including the not_found fallback), produce Final Answer right after it.
+- Never call `client_overview` more than once.
+- Once you have the Overview and at least two of these — KPIs, Interactions,
+  Tickets, or Notes — immediately produce the **Final Answer**.
+- If you reach `notes_search` (including the `not_found` fallback), always
+  produce the **Final Answer** right after it.
+
 """
 
 REACT_TEMPLATE = """{system}
@@ -89,10 +105,12 @@ def _tool_list():
     ]
 
 def build_agent() -> AgentExecutor:
+     # reset once-per-executor
+    sql_tools.reset_used()
+    notes_tool.reset_used()
+
     llm = _build_llm()
     tools: List = _tool_list()
-
-    prompt = ChatPromptTemplate.from_template(REACT_TEMPLATE).partial(system=SYSTEM_PROMPT)
 
     agent = create_react_agent(llm=llm, tools=tools, prompt=prompt)
     executor = AgentExecutor(
@@ -107,6 +125,7 @@ def build_agent() -> AgentExecutor:
             "output only a corrected 'Action Input' line with a valid JSON object. "
             "Otherwise, produce 'Final Answer' in the required format."
         ),
+        early_stopping_method="force"
     )
     return executor
 
@@ -115,5 +134,69 @@ def run_brief(client_name: str) -> str:
     executor = build_agent()
     query = f"Prepare a pre-call brief for {client_name}. Include only factual info from tools."
     result = executor.invoke({"input": query})
-    # AgentExecutor returns a dict with 'output'
-    return result.get("output", "").strip()
+    output = (result.get("output", "") or "").strip()
+    if output:
+        return output
+
+    # Deterministic fallback: synthesize a brief directly from repositories and notes
+    try:
+        from ai_sales_assistant.db import repositories as repo
+        from ai_sales_assistant.rag.retriever import notes_search
+
+        ov = repo.client_overview(client_name)
+        kpis = repo.kpi_snapshot(client_name, 3)
+        interactions = repo.recent_interactions(client_name, 3)
+        tickets = repo.open_tickets(client_name)
+        notes = notes_search(query=client_name, k=3, client_name=client_name)
+
+        if ov:
+            overview = f"{ov.get('company_name','')} | {ov.get('industry','')} | {ov.get('region','')} (Owner: {ov.get('owner_name','')})"
+        else:
+            overview = "Not available"
+
+        if kpis:
+            last = kpis[-1]
+            spend = last.get("spend")
+            spend_part = f"Spend: {spend:.0f}; " if isinstance(spend, (int, float)) else ""
+            kpi_str = (
+                f"{spend_part}Sat: {last.get('satisfaction_score','?')}; Churn risk: {last.get('churn_risk','?')}%"
+            )
+        else:
+            kpi_str = "Not available"
+
+        risks = []
+        if kpis:
+            try:
+                if float(kpis[-1].get('churn_risk') or 0) >= 15:
+                    risks.append("Elevated churn risk")
+            except Exception:
+                pass
+            try:
+                if int(kpis[-1].get('open_tickets') or 0) >= 2:
+                    risks.append("Multiple open tickets")
+            except Exception:
+                pass
+        if any((t.get('priority') == 'High') and (t.get('status') in {'Open','Pending'}) for t in tickets):
+            risks.append("High-priority ticket pending")
+        risks_str = ", ".join(risks) if risks else "Not available"
+
+        tp = []
+        for it in interactions[:2]:
+            note = (it or {}).get('notes')
+            if note:
+                tp.append(note)
+        talking_points = "; ".join(tp)[:200] if tp else "Not available"
+
+        refs = ", ".join((n or {}).get('source','') for n in notes) if notes else "Not available"
+
+        brief = (
+            f"Overview: {overview}\n"
+            f"KPIs (last 3 months): {kpi_str}\n"
+            f"Risks: {risks_str}\n"
+            f"Talking points: {talking_points}\n"
+            f"References: {refs}"
+        )
+        words = brief.split()
+        return " ".join(words[:150]) if len(words) > 150 else brief
+    except Exception:
+        return "Agent stopped due to iteration limit or time limit."

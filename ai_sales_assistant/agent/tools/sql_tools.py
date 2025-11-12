@@ -4,6 +4,11 @@ import json
 from langchain.tools import StructuredTool
 from ai_sales_assistant.db import repositories as repo
 
+USED: set[str] = set()
+
+def reset_used() -> None:
+    USED.clear()
+
 def _normalize_name(arg: Any) -> str:
     """Accept plain name, or JSON string with client_name/company_name, or dict.
     Returns best-effort extracted company name.
@@ -28,11 +33,17 @@ def _normalize_name(arg: Any) -> str:
 
 def _ov(client_name: str):
     name = _normalize_name(client_name)
+    if "client_overview" in USED:
+        return "Already called client_overview; do not call again."
+    USED.add("client_overview")
     r = repo.client_overview(name)
     return r if r else {"not_found": True}
 
 def _kpi(client_name: str, months: int = 3) -> List[Dict[str, Any]]:
     name = _normalize_name(client_name)
+    if "kpi_snapshot" in USED:
+        return "Already called kpi_snapshot; do not call again."
+    USED.add("kpi_snapshot")
     # Allow months to come via JSON string
     if isinstance(client_name, str) and client_name.strip().startswith("{"):
         try:
@@ -44,6 +55,9 @@ def _kpi(client_name: str, months: int = 3) -> List[Dict[str, Any]]:
 
 def _interactions(client_name: str, limit: int = 5) -> List[Dict[str, Any]]:
     name = _normalize_name(client_name)
+    if "recent_interactions" in USED:
+        return "Already called recent_interactions; do not call again."
+    USED.add("recent_interactions")
     if isinstance(client_name, str) and client_name.strip().startswith("{"):
         try:
             data = json.loads(client_name)
@@ -54,6 +68,9 @@ def _interactions(client_name: str, limit: int = 5) -> List[Dict[str, Any]]:
 
 def _tickets(client_name: str, status: Optional[str] = None) -> List[Dict[str, Any]]:
     name = _normalize_name(client_name)
+    if "open_tickets" in USED:
+        return "Already called open_tickets; do not call again."
+    USED.add("open_tickets")
     if isinstance(client_name, str) and client_name.strip().startswith("{"):
         try:
             data = json.loads(client_name)

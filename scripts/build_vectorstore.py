@@ -3,8 +3,8 @@ import os
 import sys
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 
 NOTES_DIR = Path("data/meeting_notes")
 PERSIST_DIR = Path(os.getenv("VECTORSTORE_DIR", "data/vectorstore"))
@@ -36,7 +36,7 @@ def main():
     embeddings = HuggingFaceEmbeddings(model_name=MODEL_NAME)
     vs = Chroma.from_texts(
         texts=texts,
-        embedding=embeddings,
+        embedding_function=embeddings,
         metadatas=metas,
         persist_directory=str(PERSIST_DIR),
     )
