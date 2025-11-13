@@ -31,27 +31,43 @@ def bump_calls() -> None:
     st.session_state.calls_used += 1
 
 # ---------- Widgets ----------
-def client_picker(clients: List[str]) -> Tuple[str, bool]:
-    """Returns (target_name, run_clicked)."""
-    col1, col2 = st.columns([2, 1])
+def client_picker(clients: List[str]) -> Tuple[str, bool, str]:
+    """Returns (target_name, run_clicked, brief_type)."""
+    col1, col2, col3 = st.columns([2, 1, 1.2])
+
     with col1:
         idx = 0 if clients else None
         clients_with_placeholder = ["Select a client"] + clients
-        
         chosen = st.selectbox(
-        "Pick a client",
-        clients_with_placeholder,
-        index=0
+            "Select a client",
+            clients_with_placeholder,
+            index=0
         )
-    if chosen == "Select a client":
-        chosen = None
+        if chosen == "Select a client":
+            chosen = None
 
     with col2:
         typed = st.text_input("…or type a name", value="")
+
+    with col3:
+        brief_options = ["Select brief type", "Full brief", "Talking points only"]
+        brief_type = st.selectbox(
+            "Brief type",
+            brief_options,
+            index=0,
+            key="brief_type_select"
+        )
+        if brief_type == "Select brief type":
+            brief_type = None
+
     target = (typed or chosen or "").strip()
-    run = st.button("Generate Brief", type="primary", disabled=not bool(target))
+    run = st.button("Generate Brief", 
+                    type="primary", 
+                    disabled=not (bool(target) and brief_type)
+                    )
+    
     st.caption("Tip: tweak the name if needed (e.g., 'Acme' vs 'Acme Corp').")
-    return target, run
+    return target, run, brief_type
 
 # ---------- Renderers ----------
 def render_brief(markdown_text: str) -> None:

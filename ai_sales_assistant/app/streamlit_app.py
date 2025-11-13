@@ -22,6 +22,8 @@ from ai_sales_assistant.app.components import (
     footer,
 )
 
+from ai_sales_assistant.agent.agent import run_brief
+
 # Load env (works locally). On Streamlit Cloud, prefer st.secrets.
 load_dotenv()
 if "GROQ_API_KEY" not in os.environ and "GROQ_API_KEY" in st.secrets:
@@ -35,15 +37,35 @@ MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
 st.set_page_config(page_title="AI Sales Assistant", page_icon="📇", layout="centered")
 st.title("📇 AI Sales Assistant — Pre-Call Briefs")
+st.markdown("""
+**Prepare for your next client call.**  
+Generate a full client overview or talking points only — synthesized from recent interactions, KPIs, and tickets.
+""")
 
 # One-time init
 init_session(limit=20)
 
-from ai_sales_assistant.agent.agent import run_brief
+# Cache the agent once so "talking points only" can use it
+@st.cache_resource(show_spinner=False)
+def get_executor():
+    from ai_sales_assistant.agent.agent import build_agent
+    return build_agent()
+
+# Wrapper for running talking points only
+def run_talking_points_only(client_name: str) -> str:
+    exec_ = get_executor()
+    q = (
+        f"Prepare a pre-call brief for {client_name}. Include only factual info from tools. "
+        f"Return ONLY the 'Talking points' section as 3-5 concise, professional bullets. "
+        f"Do not include Overview, KPIs, Risks, or References. Avoid repeating raw notes; "
+        f"synthesize next-step discussion items based on recent interactions, KPIs, and open tickets."
+    )
+    result = exec_.invoke({"input": q})
+    return (result.get("output") or "").strip()
 
 # UI flow
 clients = list_clients(200)
-target, run = client_picker(clients)
+target, run, brief_type = client_picker(clients)
 
 placeholder = st.empty()
 if run:
@@ -52,10 +74,16 @@ if run:
     else:
         with st.spinner("Preparing your brief…"):
             try:
-                brief = run_brief(target)
+                if brief_type == "Full brief":
+                    md = run_brief(target)
+                    render_brief(md)
+                elif brief_type == "Talking points only":
+                    md = run_talking_points_only(target)
+                    render_brief(md)
+                else:
+                    st.info("Please select a brief type.")
+                    st.stop()
                 bump_calls()
-                with placeholder:
-                    render_brief(brief)
             except Exception as e:
                 st.error(f"Error: {e}")
 
