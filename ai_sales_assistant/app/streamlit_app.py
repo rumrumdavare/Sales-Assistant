@@ -35,7 +35,6 @@ MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
 st.set_page_config(page_title="AI Sales Assistant", page_icon="📇", layout="centered")
 st.title("📇 AI Sales Assistant — Pre-Call Briefs")
-st.caption(f"CWD: {os.getcwd()}")
 
 # One-time init
 init_session(limit=20)

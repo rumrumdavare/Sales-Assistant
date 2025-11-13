@@ -36,12 +36,16 @@ def client_picker(clients: List[str]) -> Tuple[str, bool]:
     col1, col2 = st.columns([2, 1])
     with col1:
         idx = 0 if clients else None
+        clients_with_placeholder = ["Select a client"] + clients
+        
         chosen = st.selectbox(
-            "Pick a client",
-            clients,
-            index=idx,
-            placeholder="Select a client",
+        "Pick a client",
+        clients_with_placeholder,
+        index=0
         )
+    if chosen == "Select a client":
+        chosen = None
+
     with col2:
         typed = st.text_input("…or type a name", value="")
     target = (typed or chosen or "").strip()
