@@ -1,12 +1,12 @@
 <div align="center">
 
-# 📇 AI Sales Assistant — Pre-Call Brief Generator
+## 📇 AI Sales Assistant — Pre-Call Brief Generator
 
 An AI-powered assistant that creates concise, data-backed pre-call briefs for sales and account managers.
 Built with a ReAct agent, SQL tools, vector-search notes, and a polished Streamlit interface.
 
 ---
-### Built with
+#### Built with
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![LangChain](https://img.shields.io/badge/LangChain-4585F3?style=for-the-badge&logo=chainlink&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-FF76A8?style=for-the-badge&logo=groq&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
@@ -15,7 +15,7 @@ Built with a ReAct agent, SQL tools, vector-search notes, and a polished Streaml
 
 ---
 
-## 🌟 Overview
+### 🌟 Overview
 
 The assistant generates two types of outputs:
 
@@ -25,7 +25,7 @@ The assistant generates two types of outputs:
 
 Both powered by a *LangChain ReAct* agent orchestrating *SQL + RAG* tools intelligently.
 
-## 🧰 Tech Stack
+### 🧰 Tech Stack
 
 1. **Frontend**: Streamlit
 2. **Backend**: Python 3.11, LangChain
@@ -34,7 +34,7 @@ Both powered by a *LangChain ReAct* agent orchestrating *SQL + RAG* tools intell
 5. **Vectorstore**: Chroma + MiniLM
 6. **Agent**: ReAct reasoning with tools
 
-## 📁 Project Structure
+### 📁 Project Structure
 ```
 sales assistant/
 │
@@ -65,7 +65,7 @@ sales assistant/
 └── README.md
 ```
 
-## ⚙️ Installation
+### ⚙️ Installation
 
 ```bash
 git clone <your-repo-url>
@@ -80,7 +80,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 🔑 Environment Variables
+### 🔑 Environment Variables
 
 Create .env:
 ```ini
@@ -89,7 +89,7 @@ GROQ_MODEL=llama-3.1-8b-instant
 ```
 (Streamlit Cloud → add to Secrets Manager)
 
-## 🚀 Running the App
+### 🚀 Running the App
 
 ```bash
 streamlit run ai_sales_assistant/app/streamlit_app.py
@@ -99,7 +99,7 @@ Then choose:
 - a brief type (full or talking points),
 - and click Generate Brief.
 
-## 🧠 How It Works
+### 🧠 How It Works
 
 1. ReAct Agent Logic
 The agent follows a deterministic workflow:
@@ -122,7 +122,7 @@ Filtered & summarized per client
 - Clean Markdown output
 - Session-based usage limits
 
-## 🛣️ Roadmap
+### 🛣️ Roadmap
 
 - PDF export for briefs
 - KPI charts (trend lines)
@@ -130,7 +130,7 @@ Filtered & summarized per client
 - Multi-agent pipeline (validator + writer)
 - User authentication
 
-## 📄 License
+### 📄 License
 
 Distributed under the **MIT License**.
-See ```LICENSE``` for details.
+See ![```LICENSE```](https://github.com/rumrumdavare/Sales-Assistant/blob/changes/LICENSE) for details.
