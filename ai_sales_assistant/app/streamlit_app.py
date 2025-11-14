@@ -8,6 +8,8 @@ os.environ["LANGCHAIN_TELEMETRY"] = "false"
 
 # --- path fix: ensure project root is importable ---
 import sys, pathlib
+from pathlib import Path 
+
 ROOT = pathlib.Path(__file__).resolve().parents[2]  # project root
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -35,7 +37,15 @@ if not os.getenv("GROQ_API_KEY"):
 
 MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 
+def load_css(path: str) -> None:
+    css_path = Path(path)
+    if css_path.is_file():
+        with open(css_path) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 st.set_page_config(page_title="AI Sales Assistant", page_icon="📇", layout="centered")
+# Load custom CSS
+load_css("ai_sales_assistant/app/assets/styles.css")
 st.title("📇 AI Sales Assistant — Pre-Call Briefs")
 st.markdown("""
 **Prepare for your next client call.**  
