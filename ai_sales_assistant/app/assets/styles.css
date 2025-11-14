@@ -1,153 +1,125 @@
-/* ---------- Design tokens ---------- */
+/* ---------- Base layout ---------- */
 
 :root {
-  --app-bg: #020617;          /* page background (near-black) */
-  --card-bg: #020617;         /* outer background behind main card */
-  --panel-bg: #020617;        /* can tweak later if you add side panels */
-  --surface-bg: #020617;      /* main content background */
-  --accent: #ff4b4b;          /* Streamlit red */
-  --accent-soft: rgba(255, 75, 75, 0.12);
-  --accent-border: rgba(255, 75, 75, 0.4);
-  --text-main: #f9fafb;
-  --text-muted: #9ca3af;
-  --border-subtle: #1f2933;
-  --radius-lg: 14px;
+  --bg: #373f3f;              /* page background */
+  --surface: #72768b;         /* main content background */
+  --accent: #26ea9e;          /* primary button */
+  --accent-hover: #26ea9e;
+  --text-main: #26ea9e;
+  --text-muted: #9dedcf;
+  --border-subtle: #1e2123;
   --radius-md: 10px;
-  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Segoe UI", sans-serif;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", roboto;
 }
 
-/* ---------- Global app shell ---------- */
-
+/* App shell */
 html,
 body,
 .stApp {
-  background-color: var(--app-bg) !important;
-  font-family: var(--font-sans) !important;
+  background-color: var(--bg) !important;
   color: var(--text-main) !important;
+  font-family: var(--font-sans) !important;
 }
 
-/* Center main content and give it a “card” feel */
+/* Center the main block */
 main .block-container {
   max-width: 900px;
-  padding-top: 2.5rem;
-  padding-bottom: 3rem;
   margin: 0 auto;
+  padding-top: 2.2rem;
+  padding-bottom: 3rem;
 }
 
 /* ---------- Typography ---------- */
 
-h1,
-h2,
-h3,
-h4 {
-  color: var(--text-main) !important;
-  letter-spacing: 0.01em;
-}
-
 h1 {
-  font-size: 2.1rem !important;
+  font-size: 2rem !important;
   font-weight: 650 !important;
-}
-
-h2 {
-  font-size: 1.4rem !important;
-  font-weight: 600 !important;
-  margin-top: 1.5rem;
-}
-
-p,
-span,
-label {
+  letter-spacing: 0.01em;
   color: var(--text-main) !important;
 }
 
-/* Streamlit captions (used for your tip text) */
-.small,
+p {
+  color: var(--text-main) !important;
+}
+
+.stMarkdown p {
+  margin-bottom: 0.4rem;
+}
+
+/* Summary text under the title */
+.stMarkdown:first-of-type p {
+  color: var(--text-muted) !important;
+  font-size: 0.98rem;
+}
+
+/* Tip / caption under the controls */
 .stCaption,
+small,
 .stMarkdown small {
   color: var(--text-muted) !important;
+  font-size: 0.8rem !important;
 }
 
-/* ---------- Main “card” container ---------- */
+/* ---------- Inputs: select + text input ---------- */
 
-/* If you later wrap your brief in a container, you can apply .brief-card in Markdown */
-.brief-card {
-  background: var(--surface-bg);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-subtle);
-}
-
-/* Optional helper for small section headers inside the brief */
-.brief-section-title {
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 0.35rem;
-}
-
-/* ---------- Inputs (select, text input) ---------- */
-
-.stSelectbox > div > div {
-  background-color: #020617 !important;
-  border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-subtle) !important;
-}
-
+/* Labels ("Pick a client", "...or type a name", "Brief type") */
 .stSelectbox label,
 .stTextInput label {
-  font-size: 0.85rem !important;
+  font-size: 0.8rem !important;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted) !important;
 }
 
+/* Select + text input fields */
+.stSelectbox > div > div,
 .stTextInput > div > div > input {
-  background-color: #020617 !important;
+  background-color: var(--surface) !important;
   border-radius: var(--radius-md) !important;
   border: 1px solid var(--border-subtle) !important;
   color: var(--text-main) !important;
 }
 
-/* ---------- Buttons ---------- */
+/* Ensure text input inherits text color */
+.stTextInput > div > div > input {
+  padding: 0.4rem 0.6rem !important;
+}
+
+/* ---------- Generate button ---------- */
 
 .stButton > button {
   background-color: var(--accent) !important;
-  color: #ffffff !important;
+  color: #000000 !important;
   border-radius: 999px !important;
-  border: 1px solid var(--accent-border) !important;
-  padding: 0.45rem 1.3rem !important;
+  border: 1px solid var(--accent) !important;
+  padding: 0.45rem 1.4rem !important;
   font-weight: 600 !important;
   font-size: 0.9rem !important;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 10px 24px rgba(255, 75, 75, 0.35);
+  box-shadow: var(--shadow-soft);
 }
 
+/* Hover */
 .stButton > button:hover {
-  background-color: #ff6363 !important;
-  box-shadow: 0 14px 34px rgba(255, 75, 75, 0.5);
+  background-color: var(--accent-hover) !important;
 }
 
 /* Disabled state */
 .stButton > button:disabled {
-  background-color: #4b5563 !important;
-  box-shadow: none !important;
+  background-color: #72768b !important;
   border-color: #4b5563 !important;
+  box-shadow: none !important;
 }
 
-/* ---------- Info / warning messages ---------- */
-
-.stAlert {
-  border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-subtle) !important;
+/* Active (clicking) */
+.stButton > button:active {
+    background-color: #00bf7d !important;  
+    transform: scale(0.97);
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Footer helper (if you wrap it in a container) ---------- */
 
 .app-footer {
   margin-top: 2.5rem;
@@ -156,4 +128,21 @@ label {
   font-size: 0.8rem;
   color: var(--text-muted);
   text-align: center;
+}
+/* -------- Fix Streamlit top bar / header background -------- */
+
+header[data-testid="stHeader"] {
+    background: #373f3f !important;     /* same as your page background */
+    height: 3rem;                       /* optional: make it slimmer */
+    border-bottom: 1px solid #020617 !important;
+}
+
+/* Remove the white padding inside the header */
+header[data-testid="stHeader"] > div:nth-child(1) {
+    background: #373f3f !important;
+}
+
+/* Hide the white fade overlay at the top (Streamlit injects this) */
+.stApp::before {
+    background: #373f3f !important;
 }
