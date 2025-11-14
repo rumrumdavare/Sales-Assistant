@@ -40,8 +40,9 @@ MODEL = os.getenv("GROQ_MODEL", "llama-3.1-8b-instant")
 def load_css(path: str) -> None:
     css_path = Path(path)
     if css_path.is_file():
-        with open(css_path) as f:
-            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+        with open(css_path, "r", encoding="utf-8") as f:
+            css = f.read()
+        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 st.set_page_config(page_title="AI Sales Assistant", page_icon="📇", layout="centered")
 # Load custom CSS
