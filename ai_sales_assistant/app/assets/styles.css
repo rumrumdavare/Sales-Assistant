@@ -1,0 +1,159 @@
+/* ---------- Design tokens ---------- */
+
+:root {
+  --app-bg: #020617;          /* page background (near-black) */
+  --card-bg: #020617;         /* outer background behind main card */
+  --panel-bg: #020617;        /* can tweak later if you add side panels */
+  --surface-bg: #020617;      /* main content background */
+  --accent: #ff4b4b;          /* Streamlit red */
+  --accent-soft: rgba(255, 75, 75, 0.12);
+  --accent-border: rgba(255, 75, 75, 0.4);
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-subtle: #1f2933;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+}
+
+/* ---------- Global app shell ---------- */
+
+html,
+body,
+.stApp {
+  background-color: var(--app-bg) !important;
+  font-family: var(--font-sans) !important;
+  color: var(--text-main) !important;
+}
+
+/* Center main content and give it a “card” feel */
+main .block-container {
+  max-width: 900px;
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  margin: 0 auto;
+}
+
+/* ---------- Typography ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-main) !important;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: 2.1rem !important;
+  font-weight: 650 !important;
+}
+
+h2 {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem;
+}
+
+p,
+span,
+label {
+  color: var(--text-main) !important;
+}
+
+/* Streamlit captions (used for your tip text) */
+.small,
+.stCaption,
+.stMarkdown small {
+  color: var(--text-muted) !important;
+}
+
+/* ---------- Main “card” container ---------- */
+
+/* If you later wrap your brief in a container, you can apply .brief-card in Markdown */
+.brief-card {
+  background: var(--surface-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Optional helper for small section headers inside the brief */
+.brief-section-title {
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+/* ---------- Inputs (select, text input) ---------- */
+
+.stSelectbox > div > div {
+  background-color: #020617 !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.stSelectbox label,
+.stTextInput label {
+  font-size: 0.85rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted) !important;
+}
+
+.stTextInput > div > div > input {
+  background-color: #020617 !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-main) !important;
+}
+
+/* ---------- Buttons ---------- */
+
+.stButton > button {
+  background-color: var(--accent) !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--accent-border) !important;
+  padding: 0.45rem 1.3rem !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(255, 75, 75, 0.35);
+}
+
+.stButton > button:hover {
+  background-color: #ff6363 !important;
+  box-shadow: 0 14px 34px rgba(255, 75, 75, 0.5);
+}
+
+/* Disabled state */
+.stButton > button:disabled {
+  background-color: #4b5563 !important;
+  box-shadow: none !important;
+  border-color: #4b5563 !important;
+}
+
+/* ---------- Info / warning messages ---------- */
+
+.stAlert {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+/* ---------- Footer ---------- */
+
+.app-footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
