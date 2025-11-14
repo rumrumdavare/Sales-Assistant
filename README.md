@@ -8,8 +8,8 @@ Built with a ReAct agent, SQL tools, vector-search notes, and a polished Streaml
 ---
 ### Built with
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)![LangChain](https://img.shields.io/badge/LangChain-4585F3?style=for-the-badge&logo=chainlink&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-FF76A8?style=for-the-badge&logo=groq&logoColor=white)![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![LangChain](https://img.shields.io/badge/LangChain-4585F3?style=for-the-badge&logo=chainlink&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-FF76A8?style=for-the-badge&logo=groq&logoColor=white) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 
 </div>
 
