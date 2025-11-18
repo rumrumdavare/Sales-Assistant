@@ -5,6 +5,8 @@
 An AI-powered assistant that creates concise, data-backed pre-call briefs for sales and account managers.
 Built with a ReAct agent, SQL tools, vector-search notes, and a polished Streamlit interface.
 
+**[View the Live App here](https://aisalesassistant.streamlit.app/)**
+
 ---
 #### Built with
 
