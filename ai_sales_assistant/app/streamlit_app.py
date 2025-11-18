@@ -3,6 +3,18 @@ import os
 from dotenv import load_dotenv
 import streamlit as st
 
+hide_loader = """
+<style>
+#stDecoration, /* the top-right Streamlit spinner */
+.stDeployButton, /* "running man" spinner when deploying */
+.css-6qob1r, /* older spinner class */
+.stSpinner > div > div { 
+    display: none !important; 
+}
+</style>
+"""
+st.markdown(hide_loader, unsafe_allow_html=True)
+
 os.environ["CHROMA_TELEMETRY_DISABLED"] = "1"
 os.environ["LANGCHAIN_TELEMETRY"] = "false"
 
